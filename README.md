@@ -51,7 +51,7 @@ npm run build
 
 ## Full stack Docker run
 The full stack docker setup is managed by the backend project.  
-From `movie-recommendation` (backend root), run:
+From `movie-recommendation-api` (backend root), run:
 
 ```bash
 npm run docker
