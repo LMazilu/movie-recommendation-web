@@ -1,36 +1,63 @@
-# movie-recommendation-fe
+# movie-recommendation-web
 
-App created for a technical challenge and to challenge myself with new technologies.
-The app is made with:
+React frontend for the Movie Recommendation app, including authentication flow, user area, preference questions, and recommendation results UI.
 
-- React (create-react-app) frontend
-- NestJs backend
-- MongoDB database
+## Project purpose
+This frontend provides the user-facing experience for:
+- registration/login
+- password reset pages
+- preference/question flow for recommendation generation
+- displaying selected films and recommendation responses
+- basic user profile area
 
-Everything is dockerized into three images.
-There is no source code for the mongo, it's using nest mongoose + docker image to access the database.
+It consumes the backend API from the companion project (`movie-recommendation-api`).
 
-## How to build + run the app locally
+## Tech stack
+- React (Create React App) + TypeScript
+- React Router
+- Styled Components
+- Firebase client SDK (auth-related flows)
+- JWT decode utilities
 
-1. Download both "movie-recommendation-fe" (this project) and "movie-recommendation" from my github repositories.
-2. Make a .env file for both of the projects. You can find a `.env.example` file inside the root directory of both projects. Use your personal data
-3. run `npm install` for both projects
-4. run the `npm run docker` script from the backend root directory. There is a docker compose file that will do everything for you.
-5. Done! you can now use the frontend at `localhost:3000` and the backend at `localhost:3030`. The Swagger Apis are available at `localhost:3030/api/docs`.
+## Main frontend areas
+- `src/pages`
+  - `HomePage`, `LoginPage`, `RegisterPage`, `QuestionsPage`
+- `src/components`
+  - recommendation, user, auth and utility components
+- `src/context`
+  - auth state management (`AuthContext`)
+- `src/api`
+  - API calls to backend
 
-## How to build the app
+## Environment variables
+Create `.env` from `.env.example` and set:
+- Firebase config (`REACT_APP_FIREBASE_*`)
+- `REACT_APP_API_URL` (e.g. `http://localhost:3030`)
+- `REACT_APP_URL_NOT_FOUND`
+- `REACT_APP_PUBLIC_BUCKET_URL`
 
-In the project directory, you can run:
+## Run locally
+```bash
+npm install
+npm start
+```
 
-### `npm start`
+App URL: `http://localhost:3000`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Build
+```bash
+npm run build
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Full stack Docker run
+The full stack docker setup is managed by the backend project.  
+From `movie-recommendation` (backend root), run:
 
-### `npm run build`
+```bash
+npm run docker
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This starts:
+- frontend (`movie-recommendation-fe`) on `3000`
+- backend on `3030`
+- mongo on `27017`
